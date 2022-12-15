@@ -52,11 +52,6 @@ int main(){
    printf("\nSending info to server\n");
    sendto(sock_fd, buff, strlen(buff), 0, (struct sockaddr*)&server_addr, sizeof(server_addr));
 
-
-   //printf("Address: %s\n", client_addr.sun_path);
-   //printf("Buffer %s\n", buff);
-   //printf("Namelen var %d\n", namelen);
-
    close(sock_fd);
 
    return 0;
