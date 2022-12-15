@@ -42,7 +42,7 @@ int main(){
    }
 
    memset(buff, 0, MAX_SIZE);
-   FILE* names = popen("tree -ai | head --lines=-2 | sed '1d'", "r");
+   FILE* names = popen("tree -i | head --lines=-2 | sed '1d'", "r");
    fread(buff, 1, sizeof(buff), names);
    pclose(names);
 
@@ -50,13 +50,14 @@ int main(){
    sendto(sock_fd, buff, strlen(buff), 0, (struct sockaddr*)&client1_addr, sizeof(client1_addr));
    sendto(sock_fd, buff, strlen(buff), 0, (struct sockaddr*)&client2_addr, sizeof(client2_addr));
 
-   while(1) {
+   //while(1) {
+   for (int i = 0; i < 2; i++) {
       memset(buff, 0, MAX_SIZE);
       if(recvfrom(sock_fd, buff, sizeof(buff),  0, NULL, NULL) < 0) {
          printf("Error recvfrom\n");
          exit(1);
       }
-      printf("Info from client:\n%s", buff);
+      printf("Info from client:\n%s\n", buff);
    }
 
    close(sock_fd);

@@ -45,7 +45,7 @@ int main(){
    printf("Info from server:\n%s", buff);
 
    memset(buff, 0, MAX_SIZE);
-   FILE* sz = popen("tree -ais | head --lines=-2 | sed '1d'", "r");
+   FILE* sz = popen("tree -is | head --lines=-2 | sed '1d'", "r");
    fread(buff, 1, sizeof(buff), sz);
    pclose(sz);
 
